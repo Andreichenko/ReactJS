@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ReactLes1</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.0/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.0/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser.js"></script>
+    <link rel="stylesheet" type="text/css" href="main.css">
+
+</head>
+<body>
+
+    <div id='content'></div>
+
+<script type="text/babel">
+
+    var Task = React.createClass({
+
+        edit: function () {
+          alert('you are put button Edit')
+        },
+
+        remove: function () {
+            alert('you are put button delete')
+        },
+
+
+        render: function () {
+            return (
+                <div className="box">
+                    <div className="text">{this.props.children}</div>
+                    <button onClick={this.edit} className="btn light">Edit</button>
+                    <button onclick={this.remove} className="btn red">Delete</button>
+                </div>
+            );
+        }
+    });
+
+//    var Game = React.createClass({
+//        render: function () {
+//            return (
+//                    <div>
+//                        <h1>{this.props.name}</h1>
+//                        <h3>{this.props.descr}</h3>
+//                    </div>
+//            );
+//        }
+//    });
+
+    const app = document.getElementById('content');
+
+    ReactDOM.render(
+            <div className="field">
+                <Task>this is placeholder</Task>
+                <Task>this is placeholder 2</Task>
+            </div>,
+
+
+//        <div>
+//        <Game name="AppTerm" descr="This is full app for Unix OS"/>
+//        <Game name="DevOps" descr ="This is bug name for WindowsOS"/>
+//        </div>,
+        app
+    );
+
+
+</script>
+
+
+
+
+
+
+</body>
+</html>
