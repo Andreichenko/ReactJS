@@ -63,17 +63,6 @@
         }
     });
 
-//    var Game = React.createClass({
-//        render: function () {
-//            return (
-//                    <div>
-//                        <h1>{this.props.name}</h1>
-//                        <h3>{this.props.descr}</h3>
-//                    </div>
-//            );
-//        }
-//    });
-
     var Field = React.createClass({
         getInitialState: function () {
             return {
@@ -84,15 +73,36 @@
                 ]
             }
         },
+
+        deleteBlock: function () {
+
+           var arr = this.state.tasks;
+           arr.splice(i, 1);
+           this.setState({tasks: arr});
+        },
+
+        updateText: function () {
+           var arr = this.state.tasks;
+           arr[i] = text;
+           this.setState({tasks: arr});
+        },
+
+
+        eachTask: function (item, i) {
+                return (
+                        <Task key={i} index={i}>
+                            {item}
+
+                        </Task>
+                )
+
+        },
+
         render: function () {
             return (
                     <div className="field">
                         {
-                            this.state.tasks.map (function (item, i) {
-                                return (
-                                        <Task key={i}>{item}</Task>
-                                )
-                            })
+                            this.state.tasks.map (this.eachTask)
                         }
                     </div>
             )
@@ -101,22 +111,9 @@
 
     const app = document.getElementById('content');
 
-    ReactDOM.render(<Field /> , app
-
-
-//        <div>
-//        <Game name="AppTerm" descr="This is full app for Unix OS"/>
-//        <Game name="DevOps" descr ="This is bug name for WindowsOS"/>
-//        </div>,
-    );
-
+    ReactDOM.render(<Field /> , app);
 
 </script>
-
-
-
-
-
 
 </body>
 </html>
