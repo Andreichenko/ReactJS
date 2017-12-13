@@ -26,11 +26,10 @@
 //          alert('you are put button Edit')
         },
         remove: function () {
-            alert('you are put button delete')
+           this.props.delete(this.props.index);
         },
         save: function () {
-            var value = this.refs.txt.value;
-            alert(value);
+            this.props.update(this.refs.txt.value, this.props.index);
             this.setState({edit: false})
         },
 
@@ -67,11 +66,14 @@
         getInitialState: function () {
             return {
                 tasks :[
-                  'I want milk',
-                    'I want water',
-                    'I want to belive'
                 ]
             }
+        },
+
+        add : function (text) {
+            var arr = this.state.tasks;
+            arr.push(text);
+            this.setState({tasks: arr});
         },
 
         deleteBlock: function () {
@@ -90,7 +92,7 @@
 
         eachTask: function (item, i) {
                 return (
-                        <Task key={i} index={i}>
+                        <Task key={i} index={i} update={this.updateText} delete={this.deleteBlock}>
                             {item}
 
                         </Task>
@@ -101,6 +103,7 @@
         render: function () {
             return (
                     <div className="field">
+                        <button onClick={this.add.bind(null, 'easy task')} className="btn new">New Task</button>
                         {
                             this.state.tasks.map (this.eachTask)
                         }
